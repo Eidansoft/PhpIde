@@ -1,0 +1,15 @@
+
+.filetree-ul {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+.filetree-ul .filetree-ul {
+	list-style-type: none;
+	padding-left: 20px;
+}
+
+.CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+}

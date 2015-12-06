@@ -1,0 +1,25 @@
+{
+  "name": "phpide",
+  "version": "1.0.0",
+  "description": "A IDE to develop online PHP scripts directly from the browser",
+  "main": "mainController.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eidansoft/PhpIde.git"
+  },
+  "keywords": [
+    "php",
+    "ide",
+    "angular",
+    "codemirror"
+  ],
+  "author": "Alejandro Lorente",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Eidansoft/PhpIde/issues"
+  },
+  "homepage": "https://github.com/Eidansoft/PhpIde#readme"
+}
