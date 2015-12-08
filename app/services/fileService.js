@@ -1,4 +1,5 @@
 angular.module('phpide').factory('fileService', function($http, $q){
+	var phphilesURL = './php_scripts/phphile.php';
 
 	var processRequest = function(request){
 		return $q(function(resolve, reject) {
@@ -23,22 +24,44 @@ angular.module('phpide').factory('fileService', function($http, $q){
 
 	var getFiles = function(path){
 		return processRequest({
-			method: 'GET',
-			//url: './mocks/files.json'
-			url: './php_scripts/phphile.php?format=JSON&path='+path+'&operation=listFiles'
+			method: 'POST',
+			url: phphilesURL,
+			data: { 
+				"path": path,
+				"operation": "listFiles",
+				"format": "JSON",
+			}
 		});
 	};
 
 	var getFile = function(path){
 		return processRequest({
-			method: 'GET',
-			//url: './mocks/sql.php.txt'
-			url: './php_scripts/phphile.php?format=FILE&path='+path+'&operation=getFile'
+			method: 'POST',
+			url: phphilesURL,
+			data: { 
+				"path": path,
+				"operation": "getFile",
+				"format": "FILE",
+			}
+		});
+	};
+
+	var saveFile = function(path, content){
+		return processRequest({
+			method: 'POST',
+			url: phphilesURL,
+			data: { 
+				"path": path,
+				"operation": "saveFile",
+				"content": content,
+				"format": "JSON",
+			}
 		});
 	};
 
     return {
     	"getFiles": getFiles,
     	"getFile": getFile,
+    	"saveFile": saveFile,
     };               
 });

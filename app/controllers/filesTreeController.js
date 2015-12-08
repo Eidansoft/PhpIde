@@ -15,7 +15,7 @@ angular.module('phpide').controller('filesTreeController', function($scope, file
     	return res;
     };
 
-    $scope.setFileLoaded = function (node, file){
+    $scope.setFileLoaded = function (event, file){
     	// look for the file at the array and set it as loaded
     	var nodeFound = $scope.lookForFile(file.name, $scope.project.files[0]);
     	if (nodeFound){

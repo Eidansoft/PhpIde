@@ -103,7 +103,7 @@ function executeFileOperation($request){
 			getFile($request['path'], $request['format']);
 			break;
 		case "saveFile":
-			checkAndSaveFile($request['path'], $request['content'], $request['format']);
+			return checkAndSaveFile($request['path'], $request['content'], $request['format']);
 			break;
 		case "deleteFile":
 			//deleteFile($request['path']);
@@ -249,10 +249,12 @@ function checkAndSaveFile($path, $content, $responseFormat){
 	}
 
 	if ($writeSuccess) {
-		createResponse($responseFormat, "Success", 0);
+		$res = createResponse($responseFormat, "Success", 0);
 	} else {
 		endWithError($responseFormat, "Error saving file", 16);
 	}
+
+	return $res;
 }
 
 /**
