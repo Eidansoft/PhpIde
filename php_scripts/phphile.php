@@ -10,6 +10,9 @@
 include_once "./configuration.php.inc";
 include_once "./funciones.php.inc";
 
+// Angular's post variables need to be read specifically so i need to add them to the $_REQUEST array
+$_REQUEST = array_merge ( $_REQUEST, (array)json_decode(file_get_contents("php://input") ));
+
 // Check for format param
 if ($_REQUEST['format'] == "XML"){
 	header ("Content-Type: application/xml");
