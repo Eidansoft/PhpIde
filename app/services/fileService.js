@@ -33,7 +33,7 @@ angular.module('phpide').factory('fileService', function($http, $q){
 		return processRequest({
 			method: 'GET',
 			//url: './mocks/sql.php.txt'
-			url: './php_scripts/phphile.php?format=JSON&path='+path+'&operation=getFile'
+			url: './php_scripts/phphile.php?format=FILE&path='+path+'&operation=getFile'
 		});
 	};
 

@@ -13,5 +13,6 @@ $validOperations[] = "getFile";
 $validOperations[] = "createFolder";
 $validOperations[] = "saveFile";
 
-$rootFolder = getcwd();
+// "/var/www/html/tests/phpide"
+$rootFolder = getcwd() . "/..";
 ?>

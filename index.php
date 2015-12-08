@@ -9,8 +9,11 @@
 	<link href="./css/styles.css" rel="stylesheet">
 </head>
 <body ng-app="phpide" ng-controller="mainController">
-	<h2>IDE test</h2>
 	<div class="container-fluid">
+		<div class="row">
+			<div id="phpide-title" class="col-xs-2"><h2>IDE test</h2></div>
+			<div id="phpide-buttonbar" class="col-xs-10" ng-include="'./partials/buttons.html'"/></div>
+		</div>
 		<div class="row">
 			<div id="phpide-fileTree" class="col-xs-2" ng-include="'./partials/filesTree.html'"></div>
 			<div id="phpide-editor" class="col-xs-10" ng-include="'./partials/editor.html'"/></div>
@@ -20,11 +23,13 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="./lib/angular-PubSub-master/src/angular-pubsub.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="./lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <!-- script src="./lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script -->
+    <script src="./lib/ui-bootstrap/ui-bootstrap-0.14.3.min.js"></script>
 
 	<script src="./app/controllers/mainController.js"></script>
 	<script src="./app/controllers/filesTreeController.js"></script>
 	<script src="./app/controllers/editorController.js"></script>
+	<script src="./app/controllers/buttonsController.js"></script>
 	<script src="./app/services/fileService.js"></script>
 
 	<script src="./lib/CodeMirror-master/lib/codemirror.js"></script>
