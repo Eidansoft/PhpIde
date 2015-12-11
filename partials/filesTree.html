@@ -1,18 +1,4 @@
-<script type="text/ng-template" id="tree_item_renderer.html">
-    <a ng-if="file.name.length > 0" href="#" ng-click="openFile(file)">
-    	<span ng-if="file.type == 'file'" class="glyphicon glyphicon-file" aria-hidden="true"></span>
-    	<span ng-if="file.type == 'folder' && file.nodes.length == 0" class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
-    	<span ng-if="file.type == 'folder' && file.nodes.length > 0" class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-    	&nbsp;
-        <b ng-if="file.editing">{{file.name}}</b>
-        <span ng-if="!file.editing">{{file.name}}</span>
-    </a>
-    <ul ng-if="file.nodes.length > 0" class="filetree-ul">
-        <li ng-repeat="file in file.nodes" ng-include="'tree_item_renderer.html'"></li>
-    </ul>
-</script>
-
 <div ng-controller="filesTreeController">
 	{{project.name}}
-	<div ng-repeat="file in project.files" ng-include="'tree_item_renderer.html'"></div>
+	<filesinatree files="project.files" selectitemfunction="selectitem"></filesinatree>
 </div>

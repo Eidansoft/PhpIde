@@ -96,8 +96,7 @@ function executeFileOperation($request){
 			return listFiles($request['path'], $request['format']);
 			break;
 		case "createFolder":
-			//createFolder($request['path']);
-			endWithError($request['format'], "Not yet implemented", -1);
+			return createFolder($request['path'], $request['format']);
 			break;
 		case "getFile":
 			getFile($request['path'], $request['format']);
@@ -106,8 +105,7 @@ function executeFileOperation($request){
 			return checkAndSaveFile($request['path'], $request['content'], $request['format']);
 			break;
 		case "deleteFile":
-			//deleteFile($request['path']);
-			endWithError($request['format'], "Not yet implemented", -1);
+			return deleteFile($request['path'], $request['format']);
 			break;
 		default:
 			endWithError($request['format'], "Function not yet implemented", 11);
@@ -268,6 +266,54 @@ function saveFile($path, $content, $responseFormat){
 	$res = fwrite($myfile, $content);
 	fclose($myfile);
 	return ($res === false ? $res : true);
+}
+
+/**
+ * Delete file and return a response to inform the client into the responseFormat format
+ * @param string - $path - The path to the file
+ * @param string - $responseFormat - The format to return the results
+ */
+function deleteFile($path, $responseFormat){
+	global $rootFolder;
+	$filePath = $rootFolder . $path;
+	$writeSuccess = false;
+	if (file_exists($filePath)) {
+		if (is_file($filePath)) {
+			if (unlink ( $filePath )){
+				$res = createResponse($responseFormat, "Success", 0);
+			} else {
+				endWithError($responseFormat, "Error deleting file '" . $path . "'" , 18);
+			}
+		} else {
+			endWithError($responseFormat, "File not found", 19);
+		}
+	} else {
+		endWithError($responseFormat, "File not found", 20);
+	}
+
+	return $res;
+}
+
+/**
+ * Create a new folder and return a response to inform the client into the responseFormat format
+ * @param string - $path - The path for the new folder
+ * @param string - $responseFormat - The format to return the results
+ */
+function createFolder($path, $responseFormat){
+	global $rootFolder;
+	$filePath = $rootFolder . $path;
+	if (file_exists($filePath)) {
+		endWithError($responseFormat, "Wrong path", 21);
+	} else {
+		$res = mkdir($path, 0777);
+	}
+
+	if ($res) {
+		$res = createResponse($responseFormat, "Success", 0);
+	} else {
+		endWithError($responseFormat, "Error creating folder '" . $path . "'", 22);
+	}
+	return $res;
 }
 
 function debug($msg, $variable){

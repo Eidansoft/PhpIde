@@ -59,9 +59,22 @@ angular.module('phpide').factory('fileService', function($http, $q){
 		});
 	};
 
+	var deleteFile = function(path){
+		return processRequest({
+			method: 'POST',
+			url: phphilesURL,
+			data: { 
+				"path": path,
+				"operation": "deleteFile",
+				"format": "JSON",
+			}
+		});
+	};
+
     return {
     	"getFiles": getFiles,
     	"getFile": getFile,
     	"saveFile": saveFile,
+    	"deleteFile": deleteFile,
     };               
 });

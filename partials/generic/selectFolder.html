@@ -1,0 +1,20 @@
+<div ng-controller="selectFolderController">
+	<div ng-show="showWindow" class="phpide-modal-centered container">
+		<div class="row modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">{{data.title}}</h3>
+				</div>
+				<div class="modal-body">
+					<!--div ng-include="'./partials/generic/treeList.html'"></div-->
+					<div>Selected: {{data.selected.path + data.selected.name}}</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="button" ng-click="ok()">{{data.okButton}}</button>
+					<button class="btn btn-warning" type="button" ng-click="cancel()">{{data.cancelButton}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-if="showWindow" class="modal-backdrop in"></div>
+</div>

@@ -1,0 +1,10 @@
+<div ng-controller="alertsController" class="phpide-modal-centered container">
+	<div class="row" ng-repeat="alert in alerts">
+		<div class="alert alert-{{alert.mode}} center-block">
+			<button type="button" class="close" data-ng-click="closeAlert($index)" >
+				<span class="glyphicon glyphicon-remove-circle"></span>
+			</button>
+			{{alert.msg}}
+		</div>
+	</div>
+</div>
