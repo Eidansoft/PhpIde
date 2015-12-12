@@ -42,6 +42,7 @@ angular.module('phpide').directive('filesinatree', ['fileService', function(file
 		scope: {
 			files: '=files',
 			selectitemfunction: '=selectitemfunction',
+			onlyfolders: '=onlyfolders',
 		},
 		templateUrl: './partials/generic/filesinatree.html',
 		link: link,
