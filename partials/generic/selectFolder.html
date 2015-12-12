@@ -3,15 +3,15 @@
 		<div class="row modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title">{{data.title}}</h3>
+					<h3 class="modal-title">{{config.title}}</h3>
 				</div>
 				<div class="modal-body">
-					<!--div ng-include="'./partials/generic/treeList.html'"></div-->
-					<div>Selected: {{data.selected.path + data.selected.name}}</div>
+					<filesinatree files="files" selectitemfunction="selectitem"></filesinatree>
+					<div>Selected: {{selected.path + selected.name}}</div>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" type="button" ng-click="ok()">{{data.okButton}}</button>
-					<button class="btn btn-warning" type="button" ng-click="cancel()">{{data.cancelButton}}</button>
+					<button class="btn btn-primary" type="button" ng-click="ok()">{{config.okButton}}</button>
+					<button class="btn btn-warning" type="button" ng-click="cancel()">{{config.cancelButton}}</button>
 				</div>
 			</div>
 		</div>

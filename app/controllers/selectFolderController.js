@@ -1,32 +1,28 @@
 angular.module('phpide').controller('selectFolderController', function($scope, fileService, PubSub) {
-	$scope.data = {};
 
 	$scope.ok = function () {
 		$scope.hide();
-		if (typeof $scope.data.success != 'undefined') {
-			$scope.data.success($scope.data.selected);
+		if (typeof $scope.config.success != 'undefined') {
+			$scope.config.success($scope.selected);
 		}
 	};
 
 	$scope.cancel = function () {
 		$scope.hide();
-		if (typeof $scope.data.cancelled != 'undefined') {
-			$scope.data.cancelled();
+		if (typeof $scope.config.cancelled != 'undefined') {
+			$scope.config.cancelled();
 		}
 	};
 
-	$scope.displayFileContent = function(event, configureWindow) {
-		$scope.data = configureWindow;
-		$scope.data.selected = {"name": "none"};
+	$scope.selectitem = function(fileSelected) {
+		$scope.selected = fileSelected;
+	};
 
-		var configureTree = {
-			rootFolder: "/",
-			onClick: function(fileSelected) {
-				$scope.data.selected = fileSelected;
-			},
-		};
-		PubSub.publish('configure-file-tree', configureTree);
-		
+	$scope.displayFileContent = function(event, configureWindow) {
+		$scope.config = configureWindow;
+		//$scope.files = [{name: "prueba", type: "file", size: 40}];
+		$scope.selected = {"name": "none"};
+
 		$scope.show();
 	};
 
@@ -40,4 +36,6 @@ angular.module('phpide').controller('selectFolderController', function($scope, f
 
 	// Subscribe to the events to handle
 	PubSub.subscribe('open-modal-select-file', $scope.displayFileContent);
+
+	$scope.files = [];
 });
