@@ -53,9 +53,9 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 			success: function(folderSelected) {
 				PubSub.publish('display-info', "Folder selected:" + folderSelected.path + folderSelected.name);
 			},
-			cancelled: function() {
-				PubSub.publish('display-error', "No folder selected");
-			},
+			// cancelled: function() {
+			// 	PubSub.publish('display-error', "No folder selected");
+			// },
 		};
 		PubSub.publish('open-modal-select-file', configureWindow);
 	};
