@@ -29,19 +29,61 @@ angular.module('phpide').directive('filesinatree', ['fileService', function(file
 				}
 			}
 
-			if (typeof scope.selectitemfunction != 'undefined') {
-				scope.selectitemfunction(file);
+			if (typeof scope.control.selectitemfunction != 'undefined') {
+				scope.control.selectitemfunction(file);
 			}
 		};
 
-		getFiles(scope.files, "/");
+		var setNoFileSelected = function (fileNode){
+			if (typeof fileNode == 'undefined') {
+				setNoFileSelected(scope.control.files);
+			} else {
+				for (var i = 0; i < fileNode.length; i++) {
+					if (fileNode[i].type == 'folder') {
+						setNoFileSelected(fileNode[i].nodes);
+					} else {
+						fileNode[i].editing = "selected";
+					}
+				}
+			}
+		};
+
+		var lookForFile = function (fileName, fileNode){
+			var res = false;
+			for (var i = 0; i < fileNode.length && !res; i++) {
+				if (fileNode[i].name == fileName){
+					res = fileNode[i];
+				} else if (fileNode[i].type == 'folder'){
+					res = lookForFile(fileName, fileNode[i].nodes);
+				}
+			}
+			return res;
+		};
+
+		scope.selectfilefunction = function (file){
+			// un set any previous selected file
+			setNoFileSelected();
+			// look for the file at the array and set it as selected
+			var nodeFound = lookForFile(file.name, scope.control.files);
+			if (nodeFound){
+				nodeFound.editing = "notSelected";
+			}
+		};
+
+		scope.updatefunction = function (){
+			scope.control.files = [];
+			getFiles(scope.control.files, "/");
+		};
+
+		scope.updatefunction();
 	}
 
 	return {
 		restrict: 'E',
 		scope: {
-			files: '=files',
-			selectitemfunction: '=selectitemfunction',
+			control: '=',
+			updatefunction: '=',
+			selectfilefunction: '=',
 			onlyfolders: '=onlyfolders',
 		},
 		templateUrl: './partials/generic/filesinatree.html',

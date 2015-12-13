@@ -14,14 +14,20 @@ angular.module('phpide').controller('selectFolderController', function($scope, f
 		}
 	};
 
-	$scope.selectitem = function(fileSelected) {
-		$scope.selected = fileSelected;
+	$scope.selectitemfunction = function(fileSelected) {
+		$scope.selected = fileSelected.path + fileSelected.name;
 	};
 
 	$scope.displayFileContent = function(event, configureWindow) {
 		$scope.config = configureWindow;
-		//$scope.files = [{name: "prueba", type: "file", size: 40}];
-		$scope.selected = {"name": "none"};
+		// configure default return values depending the type of window
+		if ($scope.config.type == 'confirm') {
+			$scope.selected = "ok";
+		} else if ($scope.config.type == 'prompt') {
+			$scope.selected = "";
+		} else if ($scope.config.type == 'file') {
+			$scope.selected = "/";
+		}
 
 		$scope.show();
 	};

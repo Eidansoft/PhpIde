@@ -11,6 +11,10 @@ angular.module('phpide').controller('buttonsController', function($scope, PubSub
 	$scope.renameFile = function (){
 		PubSub.publish('button-rename-pressed');
 	};
+
+	$scope.newFile = function (){
+		PubSub.publish('button-new-pressed');
+	};
 	
 	$scope.deleteFile = function (){
 		PubSub.publish('button-delete-pressed');

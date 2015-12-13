@@ -27,3 +27,7 @@
 .phpide-prompt-text{
 	width: 100%;
 }
+
+.filesinatree-selected {
+	font-weight: bold;
+}

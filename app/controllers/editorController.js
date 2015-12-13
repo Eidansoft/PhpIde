@@ -29,97 +29,122 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 			indentWithTabs: true,
 		});
 		$scope.myCodeMirror.setValue(extension.toUpperCase() === "JSON" ? JSON.stringify($scope.actualfile.content, null, "\t") : $scope.actualfile.content);
-		PubSub.publish('file-loaded', $scope.actualfile);
 	};
 
 	$scope.saveFileContent = function(event) {
-		var promise = fileService.saveFile($scope.actualfile.path + $scope.actualfile.name, $scope.myCodeMirror.getValue());
-		promise.then(function(response) {
-			PubSub.publish('display-info', "File '" + $scope.actualfile.name + "' saved successfully");
-		}, function(reason) {
-			PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
-		});
+		var path = $scope.actualfile.path + $scope.actualfile.name;
+		saveFile(path, $scope.myCodeMirror.getValue())
+		.then(reportSuccess.bind(this, "File successfully saved at '" + path + "'"))
+		.catch( reportProblems );
 	};
 
 	$scope.openSaveFileAsWindow = function(event) {
-		var configureWindow = {
+		var configSelectFolder = {
 			title: "Destination",
 			msg: "Select destination folder:",
-			showFolders: true,
-			showFiles: false,
+			type: "file",
+			editable: true,
 			okButton: "Ok",
 			cancelButton: "Cancel",
-			rootFolder: "/",
 			success: function(folderSelected) {
-				PubSub.publish('display-info', "Folder selected:" + folderSelected.path + folderSelected.name);
+				saveFile(folderSelected, $scope.myCodeMirror.getValue())
+				.then(reportSuccess.bind(this, "File successfully saved at '" + folderSelected + "'"))
+				.catch( reportProblems );
 			},
 			// cancelled: function() {
 			// 	PubSub.publish('display-error', "No folder selected");
 			// },
 		};
-		PubSub.publish('open-modal-select-file', configureWindow);
+		PubSub.publish('open-modal-select-file', configSelectFolder);
 	};
 
 	$scope.openConfirmDeleteWindow = function() {
-		// var modalInstance = $uibModal.open({
-		// 	animation: true,
-		// 	templateUrl: 'prompt.html',
-		// 	controller: 'alertPromptWindowController',
-		// 	resolve: {
-		// 		configurePrompt: {
-		// 			title: "Delete",
-		// 			msg: "Are you sure you want to delete '" + $scope.actualfile.name + "'?. This operation cannot be undone",
-		// 			prompt: false,
-		// 			value: $scope.actualfile.name,
-		// 			okButton: "Ok",
-		// 			cancelButton: "Cancel",
-		// 		},
-		// 	}
-		// });
-		// modalInstance.result.then(function () {
-		// 	var promiseDelete = fileService.deleteFile($scope.actualfile.path + $scope.actualfile.name);
-		// 	promiseDelete.then(function(response) {
-		// 		$scope.actualfile = $scope.initialFile;
-		// 		$scope.displayFileContent(null, $scope.actualfile);
-		// 		PubSub.publish('display-info', "File successfully deleted");
-		// 		PubSub.publish('refresh-fileTree', $scope.actualfile);
-		// 	}, function(reason) {
-		// 		PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
-		// 	});
-		// });
+		var configConfirm = {
+			title: "Delete",
+			msg: "Are you sure you want to delete '" + $scope.actualfile.name + "'?. This operation cannot be undone",
+			type: "confirm",
+			okButton: "Yes, delete it!",
+			cancelButton: "Cancel",
+			success: function() {
+				var path = $scope.actualfile.path + $scope.actualfile.name;
+				deleteFile(path)
+				.then(reportSuccess.bind(this, "File '" + path + "' successfully deleted"))
+				.catch( reportProblems );
+			},
+			// cancelled: function() {
+			// 	PubSub.publish('display-error', "No folder selected");
+			// },
+		};
+		PubSub.publish('open-modal-select-file', configConfirm);
 	};
 
 	$scope.openRenameWindow = function () {
-		// var modalInstance = $uibModal.open({
-		// 	animation: true,
-		// 	templateUrl: 'prompt.html',
-		// 	controller: 'alertPromptWindowController',
-		// 	resolve: {
-		// 		configurePrompt: {
-		// 			title: "Rename",
-		// 			msg: "Write the new name for the file:",
-		// 			prompt: true,
-		// 			value: $scope.actualfile.name,
-		// 			okButton: "Ok",
-		// 			cancelButton: "Cancel",
-		// 		},
-		// 	}
-		// });
-		// modalInstance.result.then(function (newName) {
-		// 	var promiseCopyNew = fileService.saveFile($scope.actualfile.path + newName, $scope.actualfile.content);
-		// 	promiseCopyNew.then(function(response) {
-		// 		var promiseDeleteOld = fileService.deleteFile($scope.actualfile.path + $scope.actualfile.name);
-		// 		promiseDeleteOld.then(function(response) {
-		// 			$scope.actualfile.name = newName;
-		// 			PubSub.publish('display-info', "File successfully renamed to " + newName);
-		// 		}, function(reason) {
-		// 			PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
-		// 		});
-		// 	}, function(reason) {
-		// 		PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
-		// 	});
-		// });
+		var configSelectFolder = {
+			title: "Rename",
+			msg: "Write the new name for the file:",
+			type: "file",
+			editable: true,
+			okButton: "Ok",
+			cancelButton: "Cancel",
+			success: function(folderSelected) {
+				saveFile(folderSelected, $scope.myCodeMirror.getValue())
+				.then(deleteFile.bind(this, $scope.actualfile.path + $scope.actualfile.name))
+				.then(reportSuccess.bind(this, "File successfully saved at '" + folderSelected + "'"))
+				.catch( reportProblems );
+			},
+			// cancelled: function() {
+			// 	PubSub.publish('display-error', "No folder selected");
+			// },
+		};
+		PubSub.publish('open-modal-select-file', configSelectFolder);
 	};
+
+	var deleteFile = function(path) {
+		var promise = fileService.deleteFile(path);
+		return promise.then(
+			function(response) {
+				return response
+			},
+			function(reason) {
+				throw( reason );
+			}
+		);
+	};
+
+	var saveFile = function(path, content) {
+		var promise = fileService.saveFile(path, content);
+		return promise.then(
+			function(response) {
+				return response
+			},
+			function(reason) {
+				throw( reason );
+			}
+		);
+	};
+
+	var reportProblems = function( reason ) {
+		PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
+	};
+
+	var reportSuccess = function( msg ) {
+		PubSub.publish('refresh-filetree');
+		PubSub.publish('display-info', msg);
+	};
+
+	var loadNewEmptyFile = function() {
+		//Create the initial default file content
+		$scope.initialFile = {};
+		$scope.initialFile.name = "initFile.txt";
+		$scope.initialFile.type = "file";
+		$scope.initialFile.path = "/";
+		$scope.initialFile.content = "Initial content to show at phpide. Enjoy ;-)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+
+		$scope.actualfile = $scope.initialFile;
+
+		// Call to show the initial code
+		$scope.displayFileContent("", $scope.actualfile);
+	}
 
 	// Subscribe to the events to handle
 	PubSub.subscribe('display-file', $scope.displayFileContent);
@@ -127,16 +152,7 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 	PubSub.subscribe('button-rename-pressed', $scope.openRenameWindow);
 	PubSub.subscribe('button-delete-pressed', $scope.openConfirmDeleteWindow);
 	PubSub.subscribe('button-save-as-pressed', $scope.openSaveFileAsWindow);
+	PubSub.subscribe('button-new-pressed', loadNewEmptyFile);
 
-	//Create the initial default file content
-	$scope.initialFile = {};
-	$scope.initialFile.name = "initFile.txt";
-	$scope.initialFile.type = "file";
-	$scope.initialFile.path = "/";
-	$scope.initialFile.content = "Initial content to show at phpide. Enjoy ;-)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-
-	$scope.actualfile = $scope.initialFile;
-
-	// Call to show the initial code
-	$scope.displayFileContent("", $scope.actualfile);
+	loadNewEmptyFile();
 });

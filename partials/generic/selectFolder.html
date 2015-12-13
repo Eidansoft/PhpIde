@@ -6,8 +6,15 @@
 					<h3 class="modal-title">{{config.title}}</h3>
 				</div>
 				<div class="modal-body">
-					<filesinatree files="files" selectitemfunction="selectitem" onlyfolders="true"></filesinatree>
-					<div>Selected: {{selected.path + selected.name}}</div>
+					<div>{{config.msg}}</div>
+					<div ng-if="config.type == 'confirm'"></div>
+					<div ng-if="config.type == 'prompt'">
+						<input type="text" ng-model="selected" ng-enabled="config.editable"></input>
+					</div>
+					<div ng-if="config.type == 'file'">
+						<filesinatree files="files" selectitemfunction="selectitem" onlyfolders="true"></filesinatree>
+						<div>Selected: <input type="text" ng-model="selected" ng-enabled="config.editable"></input></div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-primary" type="button" ng-click="ok()">{{config.okButton}}</button>
