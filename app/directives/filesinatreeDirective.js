@@ -1,4 +1,4 @@
-angular.module('phpide').directive('filesinatree', ['fileService', function(fileService) {
+angular.module('phpide').directive('filesinatree', ['fileService', 'PubSub', function(fileService, PubSub) {
 
 	var link = function (scope, element, attrs) {
 
@@ -16,7 +16,7 @@ angular.module('phpide').directive('filesinatree', ['fileService', function(file
 					});
 				};
 			}, function(reason) {
-				alert("Error (" + reason.code + "): " + reason.msg);
+				PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
 			});
 		};
 
