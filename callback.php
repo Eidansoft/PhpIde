@@ -86,7 +86,11 @@ else{
 		 */
 		session_start();
 		$_SESSION["phpidesession"] = $response['auth'];
-		header('Location: http://www.eidansoft.com/desarrollos/phpide/phpide.php');
+		$url  = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+		$url .= $_SERVER['SERVER_NAME'];
+		$url .= htmlspecialchars($_SERVER['REQUEST_URI']);
+		$url = dirname($url);
+		header('Location: ' . $url . '/phpide.php');
 	}
 }
 
