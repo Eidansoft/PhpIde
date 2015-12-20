@@ -27,22 +27,24 @@ angular.module('phpide').directive('filesinatree', ['fileService', function(file
 				} else {
 					getFiles(file.nodes, file.path + file.name);
 				}
+			} else if (file.type == 'file'){
+				scope.markonefilefunction(file);
 			}
 
-			if (typeof scope.control.selectitemfunction != 'undefined') {
-				scope.control.selectitemfunction(file);
+			if (typeof scope.onclickfunction != 'undefined') {
+				scope.onclickfunction(file);
 			}
 		};
 
 		var setNoFileSelected = function (fileNode){
 			if (typeof fileNode == 'undefined') {
-				setNoFileSelected(scope.control.files);
+				setNoFileSelected(scope.files);
 			} else {
 				for (var i = 0; i < fileNode.length; i++) {
 					if (fileNode[i].type == 'folder') {
 						setNoFileSelected(fileNode[i].nodes);
 					} else {
-						fileNode[i].editing = "selected";
+						fileNode[i].editing = "notSelected";
 					}
 				}
 			}
@@ -60,30 +62,43 @@ angular.module('phpide').directive('filesinatree', ['fileService', function(file
 			return res;
 		};
 
-		scope.selectfilefunction = function (file){
+		scope.markonefilefunction = function (file){
 			// un set any previous selected file
 			setNoFileSelected();
 			// look for the file at the array and set it as selected
-			var nodeFound = lookForFile(file.name, scope.control.files);
+			var nodeFound = lookForFile(file.name, scope.files);
 			if (nodeFound){
-				nodeFound.editing = "notSelected";
+				nodeFound.editing = "selected";
 			}
 		};
 
-		scope.updatefunction = function (){
-			scope.control.files = [];
-			getFiles(scope.control.files, "/");
+		var updateOpenedFolders = function (oldFilesList, newFilesList){
+			for (var i = 0; i < oldFilesList.length; i++) {
+				if (oldFilesList[i].type == 'folder' && oldFilesList[i].nodes.length > 0) {
+					getFiles(newFilesList[i].nodes, newFilesList[i].path + newFilesList[i].name);
+					updateOpenedFolders(oldFilesList[i].nodes, newFilesList[i].nodes);
+				}
+			};
 		};
 
-		scope.updatefunction();
+		scope.refreshfiletreefunction = function (){
+			var oldFilesList = scope.files;
+			scope.files = [];
+			getFiles(scope.files, "/");
+
+			updateOpenedFolders(oldFilesList, scope.files);
+		};
+
+		scope.refreshfiletreefunction();
 	}
 
 	return {
 		restrict: 'E',
 		scope: {
-			control: '=',
-			updatefunction: '=',
-			selectfilefunction: '=',
+			files: '=',
+			onclickfunction: '=',
+			refreshfiletreefunction: '=',
+			markonefilefunction: '=',
 			onlyfolders: '=onlyfolders',
 		},
 		templateUrl: './partials/generic/filesinatree.html',

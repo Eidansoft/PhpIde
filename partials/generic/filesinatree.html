@@ -11,6 +11,6 @@
 	</ul>
 </script>
 
-<div ng-repeat="file in control.files">
+<div ng-repeat="file in files">
 	<div ng-if="!onlyfolders || (file.type == 'folder' && onlyfolders)" ng-include="'tree_subitems.html'"></div>
 </div>

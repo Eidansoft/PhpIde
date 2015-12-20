@@ -40,8 +40,9 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 
 	$scope.openSaveFileAsWindow = function(event) {
 		var configSelectFolder = {
-			title: "Destination",
+			title: "Save as ...",
 			msg: "Select destination folder:",
+			labelfile: "Write the new name:",
 			type: "file",
 			editable: true,
 			okButton: "Ok",
@@ -80,8 +81,9 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 
 	$scope.openRenameWindow = function () {
 		var configSelectFolder = {
-			title: "Rename",
-			msg: "Write the new name for the file:",
+			title: "Rename file ...",
+			msg: "Select destination folder:",
+			labelfile: "Write the new name:",
 			type: "file",
 			editable: true,
 			okButton: "Ok",

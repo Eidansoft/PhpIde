@@ -1,8 +1,10 @@
 <div ng-controller="filesTreeController">
 	{{project.name}}
 	<filesinatree
-		control="project.filetree"
-		updatefunction="project.filetree.updatefiletree"
-		selectfilefunction="project.filetree.selectfile">
+		files="project.filetree.files"
+		onclickfunction="project.filetree.selectitemfunction"
+		refreshfiletreefunction="project.filetree.updatefiletree"
+		markonefilefunction="project.filetree.selectfile"
+		onlyfolders="false">
 	</filesinatree>
 </div>

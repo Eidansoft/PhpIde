@@ -12,7 +12,6 @@ angular.module('phpide').controller('filesTreeController', function($scope, file
 			promise.then(function(response) {
 				fileSelected.content = response;
 				PubSub.publish('display-file', fileSelected);
-				$scope.project.filetree.selectfile(fileSelected);
 			}, function(reason) {
 				PubSub.publish('display-error', "Error (" + reason.code + "): " + reason.msg);
 			});
