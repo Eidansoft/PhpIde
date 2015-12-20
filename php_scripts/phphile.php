@@ -25,9 +25,15 @@ if ($_REQUEST['format'] == "XML"){
 	endWithError("TXT", "Invalid format", 1);
 }
 
+// Check user is loggedin
+session_start();
+if ( !isset($_SESSION) || !isset($_SESSION['phpidesession']) ) {
+	endWithError($_REQUEST['format'], "User not logged in", 2);
+}
+
 // Check for mandatory params
 if ( ! isset($_REQUEST['path']) || ! isset($_REQUEST['operation']) ) { 
-	endWithError($_REQUEST['format'], "Invalid request", 2);
+	endWithError($_REQUEST['format'], "Invalid request", 3);
 }
 
 // Test the operation variable, must be a valid operation
@@ -38,17 +44,17 @@ for ($i=0; $i < sizeof($validOperations) && $error; $i++) {
 	}
 }
 if ($error){
-	endWithError($_REQUEST['format'], "Invalid operation", 3);
+	endWithError($_REQUEST['format'], "Invalid operation", 4);
 }
 
 // Check the path param. Must not contain ".." to avoid to get any directory at the system
 // and double slash //
 if ( strpos($_REQUEST['path'], "..") !== false || strpos($_REQUEST['path'], "//") !== false ){
-	endWithError($_REQUEST['format'], "Invalid path", 4);
+	endWithError($_REQUEST['format'], "Invalid path", 5);
 }
 // Check that the first character for the path must be a slash
 if (strpos($_REQUEST['path'], 0, 1) == "/"){
-	endWithError($_REQUEST['format'], "Invalid path", 5);
+	endWithError($_REQUEST['format'], "Invalid path", 6);
 }
 
 //Call the function to get the results in format requested by parameter
