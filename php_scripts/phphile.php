@@ -19,7 +19,7 @@ if ($_REQUEST['format'] == "XML"){
 } elseif ($_REQUEST['format'] == "JSON"){
 	header ("Content-Type: application/json");
 } elseif ($_REQUEST['format'] == "FILE"){
-	header ("application/octet-stream");
+	header ("Content-Type: application/octet-stream");
 } else {
 	header ("Content-Type: text/plain");
 	endWithError("TXT", "Invalid format", 1);
