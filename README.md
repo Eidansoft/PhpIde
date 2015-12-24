@@ -1,6 +1,6 @@
 # PhpIde
 A IDE to develop online Web Projects directly from the browser.
-My initial idea is to create a tool to develop directly into the browser. To acomplish this task I have created a Angular web application and a PHP api.
+My initial idea is to create a tool to develop directly into the browser. To accomplish this task I have created a Angular web application and a PHP api.
 
 # Demo
 You can test a demo of this project with some limits at the available functions (cannot modify or delete the files). Test it at http://www.eidansoft.com/desarrollos/phpide/
@@ -15,3 +15,6 @@ First working version:
  - Modify files
  - Delete files
  - Rename files
+
+# License
+GPLv3
