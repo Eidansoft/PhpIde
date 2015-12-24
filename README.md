@@ -1,6 +1,9 @@
 # PhpIde
-A IDE to develop online Web Projects directly from the browser.
-My initial idea is to create a tool to develop directly into the browser. To accomplish this task I have created a Angular web application and a PHP api.
+PHPIde is a cloud IDE (Integrated Development Environment) solution created just for fun :-)
+This application has been developed by [my-self](https://www.linkedin.com/in/alejandro-d%C3%A9cimo-8b91b672) at my spare time. All sources are available at the [GIT repository](https://github.com/Eidansoft/PhpIde) on Github. Please feel free to try it out or giving me your feedback. I hope you enjoy.
+
+# Description
+The code is composed by a frontend developed as a web application with angular; and a backend developed as a PHP api.
 
 # Demo
 You can test a demo of this project with some limits at the available functions (cannot modify or delete the files). Test it at http://www.eidansoft.com/desarrollos/phpide/
