@@ -17,7 +17,9 @@
     "php",
     "ide",
     "angular",
-    "codemirror"
+    "codemirror",
+    "pub-sub",
+    "bootstrap",
   ],
   "author": "Alejandro Lorente",
   "license": "GPL-3.0",
