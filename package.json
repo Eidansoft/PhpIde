@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A IDE to develop online PHP scripts directly from the browser",
   "main": "mainController.js",
+  "devDependencies": {
+      "unzip": "0.1.11",
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
