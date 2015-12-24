@@ -1,7 +1,7 @@
 {
   "name": "phpide",
   "version": "1.0.0",
-  "description": "A IDE to develop online PHP scripts directly from the browser",
+  "description": "PHPIde is a cloud IDE (Integrated Development Environment) solution created just for fun :-) This application has been developed by [my-self](https://www.linkedin.com/in/alejandro-d%C3%A9cimo-8b91b672) at my spare time. All sources are available at the [GIT repository](https://github.com/Eidansoft/PhpIde) on Github. Please feel free to try it out or giving me your feedback. I hope you enjoy.",
   "main": "mainController.js",
   "devDependencies": {
       "unzip": "0.1.11",
