@@ -4,11 +4,12 @@
   "description": "PHPIde is a cloud IDE (Integrated Development Environment) solution created just for fun :-) This application has been developed by [my-self](https://www.linkedin.com/in/alejandro-d%C3%A9cimo-8b91b672) at my spare time. All sources are available at the [GIT repository](https://github.com/Eidansoft/PhpIde) on Github. Please feel free to try it out or giving me your feedback. I hope you enjoy.",
   "main": "mainController.js",
   "devDependencies": {
-      "unzip": "0.1.11",
+    "unzip": "= 0.1.11"
   },
   "scripts": {
-    "clean": "rm lib && rm target",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf lib && rm -rf target",
+    "uncompress": "npm run test",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
