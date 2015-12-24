@@ -6,22 +6,20 @@ My initial idea is to create a tool to develop directly into the browser. To acc
 You can test a demo of this project with some limits at the available functions (cannot modify or delete the files). Test it at http://www.eidansoft.com/desarrollos/phpide/
 
 # Changelog
-V1.1
-Added authentication with Google using the https://github.com/opauth/opauth library
+V1.1 Added authentication with Google using the https://github.com/opauth/opauth library
 
-V1.0
-First working version:
+V1.0 First working version:
  - Create new files
  - Modify files
  - Delete files
  - Rename files
 
 # Dependencies
-CodeMirror library for the editor of code: https://github.com/codemirror/CodeMirror
-UI Bootstrap for some components at the webapp: https://angular-ui.github.io/bootstrap/
-Bootstrap for the style at the webapp: http://getbootstrap.com/
-Angular PubSub library to improve comunication between components at webapp: https://github.com/georapbox/angular-PubSub
-OpAuth authentication library to the authentication system with Google: https://github.com/opauth/opauth
+ - CodeMirror library for the editor of code: https://github.com/codemirror/CodeMirror
+ - UI Bootstrap for some components at the webapp: https://angular-ui.github.io/bootstrap/
+ - Bootstrap for the style at the webapp: http://getbootstrap.com/
+ - Angular PubSub library to improve comunication between components at webapp: https://github.com/georapbox/angular-PubSub
+ - OpAuth authentication library to the authentication system with Google: https://github.com/opauth/opauth
 
 # License
 GPLv3
