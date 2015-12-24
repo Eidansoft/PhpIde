@@ -21,7 +21,7 @@
     "angular",
     "codemirror",
     "pub-sub",
-    "bootstrap",
+    "bootstrap"
   ],
   "author": "Alejandro Lorente",
   "license": "GPL-3.0",
