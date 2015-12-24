@@ -7,6 +7,7 @@
       "unzip": "0.1.11",
   },
   "scripts": {
+    "clean": "rm lib && rm target",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
