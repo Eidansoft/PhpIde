@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eidansoft/PhpIde.git"
+    "url":  "git+https://github.com/Eidansoft/PhpIde.git"
   },
   "keywords": [
     "php",
@@ -31,8 +31,8 @@
     "pub-sub",
     "bootstrap"
   ],
-  "author": "Alejandro Lorente",
-  "license": "GPL-3.0",
+  "author":   "Alejandro Lorente",
+  "license":  "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Eidansoft/PhpIde/issues"
   },
