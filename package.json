@@ -7,7 +7,8 @@
     "rimraf":         "= 2.5.0",
     "extract-zip":    "= 1.3.0",
     "unzip":          "= 0.1.11",
-    "html-minifier":  "= 1.0.1"
+    "html-minifier":  "= 1.0.1",
+    "glob":           "= 6.0.2"
   },
   "config": {
     "zippedfolder": "zip_dependencies/frontend",
@@ -17,7 +18,8 @@
   "scripts": {
     "clean":          "$(npm bin)/rimraf lib && $(npm bin)/rimraf target",
     "uncompress":     "$(npm bin)/extract-zip $npm_package_config_zippedfolder/angular-PubSub-master.zip $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/bootstrap-3.3.6-dist.zip  $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/CodeMirror-master.zip  $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/ui-bootstrap-0.14.3.min.zip  $npm_package_config_libfolder/",
-    "createwebapp":   "html-minifier --output-dir $npm_package_config_zippedfolder/ --minify-js --minify-css --input-dir ./",
+    "createwebapp":   "html-minifier --minify-js --minify-css -o $npm_package_config_targetfolder/phpide.php phpide.php",
+    "help":           "node compiler/compile.js --indexfile *.php",
     "compile":        "npm run clean && npm run uncompress",
     "test":           "echo \"Error: no test specified\" && exit 1"
   },
