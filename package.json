@@ -4,12 +4,20 @@
   "description": "PHPIde is a cloud IDE (Integrated Development Environment) solution created just for fun :-) This application has been developed by [my-self](https://www.linkedin.com/in/alejandro-d%C3%A9cimo-8b91b672) at my spare time. All sources are available at the [GIT repository](https://github.com/Eidansoft/PhpIde) on Github. Please feel free to try it out or giving me your feedback. I hope you enjoy.",
   "main": "mainController.js",
   "devDependencies": {
-    "unzip": "= 0.1.11"
+    "rimraf":         "= 2.5.0",
+    "extract-zip":    "= 1.3.0",
+    "unzip":          "= 0.1.11",
+  },
+  "config": {
+    "zippedfolder": "zip_dependencies/frontend",
+    "libfolder":    "lib",
+    "targetfolder": "target"
   },
   "scripts": {
-    "clean": "rm -rf lib && rm -rf target",
-    "uncompress": "npm run test",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "clean":          "$(npm bin)/rimraf lib && $(npm bin)/rimraf target",
+    "uncompress":     "$(npm bin)/extract-zip $npm_package_config_zippedfolder/angular-PubSub-master.zip $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/bootstrap-3.3.6-dist.zip  $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/CodeMirror-master.zip  $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/ui-bootstrap-0.14.3.min.zip  $npm_package_config_libfolder/",
+    "compile":        "npm run clean && npm run uncompress",
+    "test":           "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
