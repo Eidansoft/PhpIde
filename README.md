@@ -8,6 +8,11 @@ The code is composed by a frontend developed as a web application with angular; 
 # Demo
 You can test a demo of this project with some limits at the available functions (cannot modify or delete the files). Test it at http://www.eidansoft.com/desarrollos/phpide/
 
+# Compilation
+This application uses Node.js. To build it you need to run:
+ - Install Node.js dependencies: ```npm install```
+ - Create your compiled version: ```npm run compile```
+
 # Changelog
 V1.1 Added authentication with Google using the https://github.com/opauth/opauth library
 
