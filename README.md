@@ -16,7 +16,8 @@ If you have Node.js installed in your system, you can get the dependencies unzip
 
 If you have no Node.js, just uncompress the dependencies at **zip_dependencies/frontend** into a new **lib** folder.
 
-The dependencies at **zip_dependencies/backend** are necessary only if you want **Google login support** - You just need to unzip it into your server and make sure to configure the constant **OPAUTH_LIB_DIR** at the file **callback.php** properly. You can find more info about this library at [its page](https://github.com/opauth/opauth).
+The dependencies at **zip_dependencies/backend** are necessary only if you want **Google login support**
+ - You just need to unzip it into your server and make sure to configure the constant **OPAUTH_LIB_DIR** at the file **callback.php** properly. You can find more info about this library at [its page](https://github.com/opauth/opauth).
  - If you don't want authentication support you can just comment the session check at **php_scripts/phpphile.php** commenting out the following lines:
 ```
 // Check user is loggedin
