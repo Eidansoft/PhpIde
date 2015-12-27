@@ -6,7 +6,7 @@
   "devDependencies": {
     "rimraf":         "= 2.5.0",
     "extract-zip":    "= 1.3.0",
-    "unzip":          "= 0.1.11",
+    "unzip":          "= 0.1.11"
   },
   "config": {
     "zippedfolder": "zip_dependencies/frontend",
