@@ -1,6 +1,0 @@
-{
-	"error":{
-		"msg":"Invalid query (select * from frase where frase lik): ",
-		"code":1
-	}
-}
