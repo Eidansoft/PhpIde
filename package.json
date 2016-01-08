@@ -18,7 +18,7 @@
     "clean:libs":     "rimraf ${npm_package_config_libfolder}",
     "clean:all":      "npm run clean:build && npm run clean:libs && rm -rf node_modules",
     "clean":          "npm run clean:all",
-    "uncompress":     "$(npm bin)/extract-zip $npm_package_config_zippedfolder/angular-PubSub-master.zip $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/bootstrap-3.3.6-dist.zip  $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/CodeMirror-master.zip  $npm_package_config_libfolder/ && $(npm bin)/extract-zip $npm_package_config_zippedfolder/ui-bootstrap-0.14.3.min.zip  $npm_package_config_libfolder/",
+    "uncompress":     "extract-zip ${npm_package_config_zippedfolder}/angular-PubSub-master.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/bootstrap-3.3.6-dist.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/CodeMirror-master.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/ui-bootstrap-0.14.3.min.zip ${npm_package_config_libfolder}/",
     "createwebapp":   "html-minifier --minify-js --minify-css -o $npm_package_config_targetfolder/phpide.php phpide.php",
     "help":           "node compiler/compile.js --indexfile *.php",
     "compile":        "npm run clean && npm run uncompress",
