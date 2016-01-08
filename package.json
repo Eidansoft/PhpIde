@@ -6,9 +6,7 @@
   "devDependencies": {
     "rimraf":         "= 2.5.0",
     "extract-zip":    "= 1.3.0",
-    "unzip":          "= 0.1.11",
-    "html-minifier":  "= 1.0.1",
-    "glob":           "= 6.0.2"
+    "uglify-js":      "= 2.6.1"
   },
   "config": {
     "zippedfolder": "zip_dependencies/frontend",
