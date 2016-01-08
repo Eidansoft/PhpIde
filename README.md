@@ -8,10 +8,26 @@ The code is composed by a frontend developed as a web application with angular; 
 # Demo
 You can test a demo of this project with some limits at the available functions (cannot modify or delete the files). Test it at http://www.eidansoft.com/desarrollos/phpide/
 
-# Compilation
-This application uses Node.js. To build it you need to run:
- - Install Node.js dependencies: ```npm install```
- - Create your compiled version: ```npm run compile```
+# Compilation / configuration
+Just download the code.
+In order to get the application code minified, you will need Node.js installed in your system, you can get it all minified executing:
+ - npm install
+ - npm run uncompress
+ - npm run compile
+You will get the minified code at **target** folder.
+
+If you have no Node.js, just uncompress the dependencies at **zip_dependencies/frontend** into a new **lib** folder.
+
+The dependencies at **zip_dependencies/backend** are necessary only if you want **Google login support**
+ - You just need to unzip it into your server and make sure to configure the constant **OPAUTH_LIB_DIR** at the file **callback.php** properly. You can find more info about this library at [its page](https://github.com/opauth/opauth).
+ - If you don't want authentication support you can just comment the session check at **php_scripts/phpphile.php** commenting out the following lines:
+```
+// Check user is loggedin
+session_start();
+if ( !isset($_SESSION) || !isset($_SESSION['phpidesession']) ) {
+	endWithError($_REQUEST['format'], "User not logged in", 2);
+}
+```
 
 # Changelog
 V1.1 Added authentication with Google using the https://github.com/opauth/opauth library
