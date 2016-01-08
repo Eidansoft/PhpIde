@@ -29,7 +29,7 @@
 	<script src="./lib/ui-bootstrap-0.14.3.min/ui-bootstrap-0.14.3.min.js"></script>
 	<!-- script src="./lib/ngDialog-master/js/ngDialog.min.js"></script-->
 
-	<script src="./app/controllers/mainController.js"></script>
+	<script src="./app/mainController.js"></script>
 	<script src="./app/controllers/filesTreeController.js"></script>
 	<script src="./app/controllers/editorController.js"></script>
 	<script src="./app/controllers/buttonsController.js"></script>
