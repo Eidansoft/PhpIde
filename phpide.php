@@ -3,7 +3,7 @@
 <head>
 	<title>IDE test Angular y Code Mirror</title>
 	
-	<link href="./lib/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./lib/bootstrap-3.3.6-dist/css/bootstrap.css" rel="stylesheet">
 	<link href="./lib/CodeMirror-master/lib/codemirror.css" rel="stylesheet">
 	<link href="./lib/CodeMirror-master/addon/hint/show-hint.css" rel="stylesheet">
 	<link href="./css/styles.css" rel="stylesheet">

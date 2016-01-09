@@ -30,6 +30,8 @@ if ( !isset($_SESSION) || !isset($_SESSION['phpidesession']) ) {
 ```
 
 # Changelog
+V1.2 Created compilation scripts to get all the code minified.
+
 V1.1 Added authentication with Google using the https://github.com/opauth/opauth library
 
 V1.0 First working version:
