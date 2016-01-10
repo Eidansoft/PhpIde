@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="tree_subitems.html">
+	<a ng-if="!onlyfolders || (file.type == 'folder' && onlyfolders)" href="#" ng-click="selectItem(file)">
+		<span ng-if="file.type == 'file'" class="glyphicon glyphicon-file" aria-hidden="true"></span>
+		<span ng-if="file.type == 'folder' && file.nodes.length == 0" class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
+		<span ng-if="file.type == 'folder' && file.nodes.length > 0" class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+		&nbsp;
+		<span class="filesinatree-{{file.editing}}">{{file.name}}</span>
+	</a>
+	<ul ng-if="file.nodes.length > 0" class="filetree-ul">
+		<li ng-repeat="file in file.nodes" ng-include="'tree_subitems.html'"></li>
+	</ul>
+</script>
+
+<div ng-repeat="file in files">
+	<div ng-if="!onlyfolders || (file.type == 'folder' && onlyfolders)" ng-include="'tree_subitems.html'"></div>
+</div>

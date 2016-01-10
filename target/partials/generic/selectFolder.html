@@ -1,0 +1,31 @@
+<div ng-controller="selectFolderController">
+	<div ng-show="showWindow" class="phpide-modal-centered container">
+		<div class="row modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">{{config.title}}</h3>
+				</div>
+				<div class="modal-body">
+					<div>{{config.msg}}</div>
+					<div ng-if="config.type == 'confirm'"></div>
+					<div ng-if="config.type == 'prompt'">
+						<input type="text" ng-model="selected" ng-enabled="config.editable"></input>
+					</div>
+					<div ng-if="config.type == 'file'">
+						<filesinatree
+							files="files"
+							onclickfunction="selectitemfunction"
+							onlyfolders="true">
+						</filesinatree>
+						<div>{{config.labelfile}} <input class="form-control" type="text" ng-model="selected" ng-enabled="config.editable"></input></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="button" ng-click="ok()">{{config.okButton}}</button>
+					<button class="btn btn-warning" type="button" ng-click="cancel()">{{config.cancelButton}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-if="showWindow" class="modal-backdrop in"></div>
+</div>
