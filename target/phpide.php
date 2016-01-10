@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>IDE test Angular y Code Mirror</title>
+	<title>Web-IDE with Angular &amp; Code Mirror</title>
 	
-	<link href="phpide-1.2.0-min.css" rel="stylesheet">
-	
+	<link href="phpide-1.3.0-min.css" rel="stylesheet">
 </head>
 <body ng-app="phpide" ng-controller="mainController">
 	<div class="container-fluid">
 		<div class="row">
-			<div id="phpide-title" class="col-xs-2"><h2>IDE test</h2></div>
+			<div id="phpide-title" class="col-xs-2"><h2>PhpIDE</h2></div>
 			<div id="phpide-buttonbar" class="col-xs-10" ng-include="'./partials/buttons.html'"/></div>
 		</div>
 		<div class="row">
@@ -20,14 +19,11 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script src="phpide-1.2.0-min.js"></script>
-	<!-- script src="./lib/ui-bootstrap-tpls-0.14.3.min/ui-bootstrap-tpls-0.14.3.min.js"></script-->
-	<!-- script src="./lib/ngDialog-master/js/ngDialog.min.js"></script-->
+	<script src="phpide-1.3.0-min.js"></script>
 
 
 
 	<div ng-include="'./partials/generic/alerts.html'"></div>
-	<div ng-include="'./partials/generic/prompt.html'"></div>
 	<div ng-include="'./partials/generic/selectFolder.html'"></div>
 </body>
 </html>
