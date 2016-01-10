@@ -1,6 +1,6 @@
 {
   "name": "phpide",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "PHPIde is a cloud IDE (Integrated Development Environment) solution created just for fun :-) This application has been developed by [my-self](https://www.linkedin.com/in/alejandro-d%C3%A9cimo-8b91b672) at my spare time. All sources are available at the [GIT repository](https://github.com/Eidansoft/PhpIde) on Github. Please feel free to try it out or giving me your feedback. I hope you enjoy.",
   "main": "mainController.js",
   "devDependencies": {
@@ -17,10 +17,11 @@
   "scripts": {
     "clean:build":      "rimraf ${npm_package_config_targetfolder}",
     "clean:libs":       "rimraf ${npm_package_config_libfolder}",
-    "clean:all":        "npm run clean:build && npm run clean:libs && rm -rf node_modules",
+    "clean:all":        "npm run clean:build && npm run clean:libs && rimraf php_scripts && rm -rf node_modules",
     "clean":            "npm run clean:all",
     "preuncompress":    "npm run clean:libs",
     "uncompress":       "extract-zip ${npm_package_config_zippedfolder}/angular-PubSub-master.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/bootstrap-3.3.6-dist.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/CodeMirror-master.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/ui-bootstrap-0.14.3.min.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/Phphiles-master.zip ${npm_package_config_libfolder}/",
+    "postuncompress":   "cp -r lib/Phphiles-master/php_scripts ./",
     "copyDependencies": "cp -r partials ${npm_package_config_targetfolder} && cp -r lib/Phphiles-master/php_scripts ${npm_package_config_targetfolder} && cp callback.php ${npm_package_config_targetfolder} && cp login.php ${npm_package_config_targetfolder} && cp index.html ${npm_package_config_targetfolder}",
     "prebuild":         "npm run clean:build && mkdir ${npm_package_config_targetfolder} && npm run uncompress",
     "build":            "./build_and_minify.sh phpide.php ${npm_package_config_targetfolder} ${npm_package_name}-${npm_package_version}",
