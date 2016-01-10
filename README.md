@@ -3,23 +3,20 @@ PHPIde is a cloud IDE (Integrated Development Environment) solution created just
 This application has been developed by [my-self](https://www.linkedin.com/in/alejandro-d%C3%A9cimo-8b91b672) at my spare time. All sources are available at the [GIT repository](https://github.com/Eidansoft/PhpIde) on Github. Please feel free to try it out or giving me your feedback. I hope you enjoy.
 
 # Description
-The code is composed by a frontend developed as a web application with angular; and a backend developed as a PHP api.
+The code uses AngularJS libraries for the web application and some PHP scripts for the server part. You can test this code at your own server, just need the **target** folder copied into your server with PHP support, then open a browser and navigate to **phpide.php** file into your server.
 
 # Demo
 You can test a demo of this project with some limits at the available functions (cannot modify or delete the files). Test it at http://www.eidansoft.com/desarrollos/phpide/
 
 # Compilation / configuration
-Just download the code.
+If you are interested into modify or adapt this code to your needs, below I'll provide you some useful information.
 In order to get the application code minified, you will need Node.js installed in your system, you can get it all minified executing:
  - npm install
- - npm run uncompress
- - npm run compile
-You will get the minified code at **target** folder.
+ - npm run build
+You will get the minified code at **target** folder. My build script is Linux-dependent so it'll not built into a Win machine
 
-If you have no Node.js, just uncompress the dependencies at **zip_dependencies/frontend** into a new **lib** folder.
-
-The dependencies at **zip_dependencies/backend** are necessary only if you want **Google login support**
- - You just need to unzip it into your server and make sure to configure the constant **OPAUTH_LIB_DIR** at the file **callback.php** properly. You can find more info about this library at [its page](https://github.com/opauth/opauth).
+The dependencies at **zip_dependencies/backend** are necessary only if you want **Google login support**. Please note that Google login support will not work at local (non-public) environments. In order to get the Google login:
+ - You just need to unzip **zip_dependencies/backend** into your server and make sure to configure the constant **OPAUTH_LIB_DIR** at the file **callback.php** properly. You can find more info about this library at [its page](https://github.com/opauth/opauth).
  - If you don't want authentication support you can just comment the session check at **php_scripts/phpphile.php** commenting out the following lines:
 ```
 // Check user is loggedin
@@ -30,6 +27,8 @@ if ( !isset($_SESSION) || !isset($_SESSION['phpidesession']) ) {
 ```
 
 # Changelog
+V1.3 Adapted to use the phphile module.
+
 V1.2 Created compilation scripts to get all the code minified.
 
 V1.1 Added authentication with Google using the https://github.com/opauth/opauth library
@@ -46,6 +45,7 @@ V1.0 First working version:
  - Bootstrap for the style at the webapp: http://getbootstrap.com/
  - Angular PubSub library to improve comunication between components at webapp: https://github.com/georapbox/angular-PubSub
  - OpAuth authentication library to the authentication system with Google: https://github.com/opauth/opauth
+ - Phphile server API and module: https://github.com/Eidansoft/Phphiles
 
 # License
 GPLv3
