@@ -19,6 +19,7 @@
     "clean:libs":       "rimraf ${npm_package_config_libfolder}",
     "clean:all":        "npm run clean:build && npm run clean:libs && rm -rf node_modules",
     "clean":            "npm run clean:all",
+    "preuncompress":    "npm run clean:libs",
     "uncompress":       "extract-zip ${npm_package_config_zippedfolder}/angular-PubSub-master.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/bootstrap-3.3.6-dist.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/CodeMirror-master.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/ui-bootstrap-0.14.3.min.zip ${npm_package_config_libfolder}/ && extract-zip ${npm_package_config_zippedfolder}/Phphiles-master.zip ${npm_package_config_libfolder}/",
     "copyDependencies": "cp -r partials ${npm_package_config_targetfolder} && cp -r lib/Phphiles-master/php_scripts ${npm_package_config_targetfolder} && cp callback.php ${npm_package_config_targetfolder} && cp login.php ${npm_package_config_targetfolder} && cp index.html ${npm_package_config_targetfolder}",
     "prebuild":         "npm run clean:build && mkdir ${npm_package_config_targetfolder} && npm run uncompress",
