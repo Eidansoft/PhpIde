@@ -1,4 +1,4 @@
-angular.module('phpide').controller('buttonsController', function($scope, PubSub, fileService) {
+angular.module('phpide').controller('buttonsController', function($scope, PubSub) {
 
 	$scope.saveFile = function (){
 		PubSub.publish('button-save-pressed');

@@ -1,4 +1,4 @@
-angular.module('phpide').controller('selectFolderController', function($scope, fileService, PubSub) {
+angular.module('phpide').controller('selectFolderController', function($scope, PubSub) {
 
 	$scope.ok = function () {
 		$scope.hide();

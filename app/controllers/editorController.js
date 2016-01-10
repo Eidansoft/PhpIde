@@ -1,4 +1,4 @@
-angular.module('phpide').controller('editorController', function($scope, PubSub, fileService) {
+angular.module('phpide').controller('editorController', function($scope, PubSub, phphileService) {
 
 	$scope.displayFileContent = function (topic, data) {
 		$scope.actualfile = data;
@@ -102,7 +102,7 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 	};
 
 	var deleteFile = function(path) {
-		var promise = fileService.deleteFile(path);
+		var promise = phphileService.deleteFile(path);
 		return promise.then(
 			function(response) {
 				return response
@@ -114,7 +114,7 @@ angular.module('phpide').controller('editorController', function($scope, PubSub,
 	};
 
 	var saveFile = function(path, content) {
-		var promise = fileService.saveFile(path, content);
+		var promise = phphileService.saveFile(path, content);
 		return promise.then(
 			function(response) {
 				return response

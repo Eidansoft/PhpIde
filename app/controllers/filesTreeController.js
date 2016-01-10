@@ -1,4 +1,4 @@
-angular.module('phpide').controller('filesTreeController', function($scope, fileService, PubSub) {
+angular.module('phpide').controller('filesTreeController', function($scope, phphileService, PubSub) {
 	$scope.project = {};
 	$scope.project.name = "Test";
 	$scope.project.filetree = {};
@@ -8,7 +8,7 @@ angular.module('phpide').controller('filesTreeController', function($scope, file
 
 	$scope.project.filetree.selectitemfunction = function(fileSelected) {
 		if (fileSelected.type == 'file'){
-			var promise = fileService.getFile(fileSelected.path + fileSelected.name);
+			var promise = phphileService.getFile(fileSelected.path + fileSelected.name);
 			promise.then(function(response) {
 				fileSelected.content = response;
 				PubSub.publish('display-file', fileSelected);
